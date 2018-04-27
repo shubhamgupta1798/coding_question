@@ -1,2 +1,1 @@
-# softwaretools
-class assignment for creation of our own website frontend
+# Codes of various problems of CODECHEF and hackerearth
