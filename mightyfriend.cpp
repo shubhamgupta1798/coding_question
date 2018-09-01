@@ -1,77 +1,55 @@
+
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
+long long int b[100000];
+long long int mod=1000000007;
+void fb(int n)
+{
+  if(n>100000)
+  return;
+  else
+  b[n]=(b[n-1]%mod+b[n-2]%mod)&mod;
+  return fb(n+1);
+}
 int main()
 {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+
     int t;
     cin>>t;
-    long long int sum1=0,sum2=0;
+
+  b[0]=1;
+  b[1]=1;
+  fb(2);
     while(t--)
     {
-    int n,k,c1=0,c2=0;
-    cin>>n>>k;
-    int a[n],b[n/2+1],c[n/2];
-
-    for(int i=0;i<n;i++)
-    {
-        cin>>a[i];
-        if((i%2)==0)
-        {
-            b[c1]=a[i];
-            c1++;
-            sum1+=a[i];
-
+        int n,m;
+        cin>>m>>n;
+        int a[m],c[m];
+        long long int sum1=0,sum2=0;
+        for(int i=0;i<m;i++)
+        {cin>>a[i];
+          sum1=(sum1%mod+a[i]%mod)%mod;
         }
-        else
-        {
-            c[c2]=a[i];
-            c2++;
-            sum2+=a[i];
-
-        }
-    }
-    if(sum2>sum1)
-    cout<<"YES\n";
-    else{
-
-
-    sort(b,b+c1);
-    int e=0;
-    sort(c,c+c2);
-
-    for(int i=0;i<c1;i++)
-    cout<<b[i];
-
-    for(int i=0;i<c2;i++)
-    cout<<c[i];
-    for(int i=0;i<k;i++)
-    {cout<<sum1<<sum2<<"\n";
-      if(b[c1-i-1]>c[i])
+        for(int i=0;i<m;i++)
+      {  cin>>c[i];
+        sum2=(sum2%mod+c[i]%mod)%mod;
+      }
+      if(n<=2)
       {
-        int q;
-        q=b[c1-i-1];
-        b[c1-i-1]=c[i];
-        c[i]=q;
-        sum1=sum1-b[c1-i-1]+c[i];
-        sum2=sum2-c[i]+b[c1-i-1];
-        if(sum2>sum1)
-        {
-        e++;
-        cout<<"YES\n";
-        break;
-        }
+        long long int ans=sum2*m;
+        cout<<ans%mod<<"\n";
       }
       else
-      break;
-    }
-    cout<<sum1<<sum2<<"\n";
-    if(e==0)
-    {
-      cout<<"NO\n";
-    }
-  }
+      {
+        long long int ans=1;
+        ans=b[n-2]%mod;
+        ans=(((ans*sum2)%mod)*m)%mod;
+        ans=(ans+(((b[n-3]*sum1)%mod)*m)%mod)%mod;
+        cout<<ans<<"\n";
+
+      }
+
 
     }
 }
