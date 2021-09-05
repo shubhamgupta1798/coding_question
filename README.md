@@ -1,1 +1,1 @@
-# Includes random codes of some questions of hackerearth,codechef,codeforces
+# Includes code of some of questions solved on platforms like hackerearth,codechef,codeforces leetcode
