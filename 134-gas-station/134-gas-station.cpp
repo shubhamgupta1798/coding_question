@@ -15,7 +15,7 @@ public:
         int max_idx=0;
         if(sum<0)
         {
-            cout<<"here";
+            //cout<<"here";
             return -1;
         }
         for(int i=0;i<n;i++)
@@ -26,7 +26,7 @@ public:
                 inx=i;
             }
             else{
-            curr+=diff[i];
+                curr+=diff[i];
             }
             if(curr>max_sum)
             {
